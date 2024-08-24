@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+
 // @ComponentScan(basePackages = {"com.bootcamp.service", "com.bootcamp.repository", "com.bootcamp.domain"})
 public class WebApplication {
 
