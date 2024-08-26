@@ -24,7 +24,6 @@ public class ProjectController {
         this.projectProjectService = projectProjectService;
     }
 
-
     @PostMapping("/add")
     public ResponseEntity<String> addOne(
             @RequestBody @Valid ProjectDto dto
@@ -54,7 +53,5 @@ public class ProjectController {
     public Page<Project> showAllPage() {
         return projectProjectService.getPages();
     }
-
-
 
 }

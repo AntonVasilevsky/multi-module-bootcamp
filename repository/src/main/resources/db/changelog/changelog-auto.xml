@@ -1,0 +1,68 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<!-- <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">-->
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="r (generated)" id="1724664646792-3">
+        <createTable tableName="employee">
+            <column autoIncrement="true" name="employee_id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints unique="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="patronymic" type="VARCHAR(255)"/>
+            <column name="surname" type="VARCHAR(255)"/>
+            <column name="title" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="r (generated)" id="1724664646792-4">
+        <createTable tableName="employee_project">
+            <column name="employee_id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="project_id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="r (generated)" id="1724664646792-5">
+        <createTable tableName="project">
+            <column autoIncrement="true" name="project_id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="r (generated)" id="1724664646792-6">
+        <addUniqueConstraint columnNames="name, surname, patronymic" constraintName="UKcbu18bm6v5n0vn6dwgrwafeho"
+                             tableName="employee"/>
+    </changeSet>
+    <changeSet author="r (generated)" id="1724664646792-7">
+        <createIndex indexName="FK4yddvnm7283a40plkcti66wv9" tableName="employee_project">
+            <column name="project_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="r (generated)" id="1724664646792-9">
+        <addForeignKeyConstraint baseColumnNames="project_id" baseTableName="employee_project"
+                                 constraintName="FK4yddvnm7283a40plkcti66wv9" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="project_id" referencedTableName="project" validate="true"/>
+    </changeSet>
+    <changeSet author="r (generated)" id="1724664646792-10">
+        <addForeignKeyConstraint baseColumnNames="employee_id" baseTableName="employee_project"
+                                 constraintName="FKb25s5hgggo6k4au4sye7teb3a" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"
+                                 referencedColumnNames="employee_id" referencedTableName="employee" validate="true"/>
+    </changeSet>
+
+</databaseChangeLog>
