@@ -18,7 +18,6 @@ import java.util.List;
 public class EmployeeController {
     private final EmployeeService employeeService;
 
-
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
@@ -28,7 +27,7 @@ public class EmployeeController {
             @RequestBody @Valid EmployeeDto dto
     ) {
         // todo unique check
-        employeeService.add(employeeService.toEntity(dto));
+        employeeService.save(employeeService.add(dto));
         log.info("new employee added\n{}", dto);
         return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
@@ -36,7 +35,9 @@ public class EmployeeController {
 
     @GetMapping("/all")
     public List<EmployeeDto>getAll() {
-        return employeeService.manyToDto(employeeService.findAll());
+        return employeeService.getAllDtos();
     }
+
+
 
 }

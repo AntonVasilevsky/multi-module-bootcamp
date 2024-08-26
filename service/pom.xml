@@ -14,19 +14,7 @@
     <name>service</name>
     <description>service</description>
     <packaging>jar</packaging>
-    <url/>
-    <licenses>
-        <license/>
-    </licenses>
-    <developers>
-        <developer/>
-    </developers>
-    <scm>
-        <connection/>
-        <developerConnection/>
-        <tag/>
-        <url/>
-    </scm>
+
     <properties>
         <java.version>22</java.version>
     </properties>
@@ -61,9 +49,9 @@
             <version>3.0.0</version>
         </dependency>
         <dependency>
-            <groupId>org.bootcamp</groupId>
+            <groupId>com.bootcamp</groupId>
             <artifactId>dto</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.bootcamp</groupId>

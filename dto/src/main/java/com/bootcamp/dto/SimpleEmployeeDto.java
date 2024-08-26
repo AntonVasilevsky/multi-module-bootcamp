@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SimpleEmployeeDto {
+public class SimpleEmployeeDto implements Convertable {
     private String surname;
     private String name;
     private String patronymic;

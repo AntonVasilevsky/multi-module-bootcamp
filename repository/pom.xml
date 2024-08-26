@@ -13,6 +13,7 @@
     <version>${app.version}</version>
     <name>repository</name>
     <description>repository</description>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>

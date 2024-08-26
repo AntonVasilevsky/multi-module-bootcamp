@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployeeDto {
+public class EmployeeDto implements Convertable {
     @Size(min = 1, max = 60)
     @Pattern(regexp = "^[a-zA-Z\\s]+$", message = "Field must contain only Latin letters")
     @NotBlank

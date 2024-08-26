@@ -12,47 +12,58 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class ProjectServiceImpl implements ProjectService,  DtoConverter<Project, ProjectDto> {
+@org.springframework.stereotype.Service
+public class ProjectServiceImpl implements ProjectService, DtoConverter<Project, ProjectDto> {
     private final ProjectRepository repository;
     private final EmployeeService employeeService;
     private final ModelMapper modelMapper;
 
-    public ProjectServiceImpl(ProjectRepository repository, EmployeeService employeeService, ModelMapper modelMapper) {
+    public ProjectServiceImpl(
+            ProjectRepository repository,
+            EmployeeService employeeService,
+            ModelMapper modelMapper
+    ) {
         this.repository = repository;
         this.employeeService = employeeService;
         this.modelMapper = modelMapper;
     }
+
+
     @Override
     public Optional<Project> findByName(String name) {
         return repository.findByName(name);
     }
+
     @Override
     public List<Project> findAll() {
         return repository.findAll();
     }
+
     @Override
     public void deleteOne(Project p) {
         repository.delete(p);
     }
+
     @Override
-    public Project add(ProjectDto dto) {
-       return repository.save(toEntity(dto));
+    public Project save(Project project) {
+        return repository.save(project);
     }
+
     @Override
     public void deleteAll() {
         repository.deleteAll();
     }
 
     @Override
-    public Project toEntity(ProjectDto dto) { return modelMapper.map(dto, Project.class); }
+    public Project toEntity(ProjectDto dto) {
+        return modelMapper.map(dto, Project.class);
+    }
 
     @Override
     public ProjectDto toDto(Project project) {
@@ -72,22 +83,26 @@ public class ProjectServiceImpl implements ProjectService,  DtoConverter<Project
                 .map(this::toDto)
                 .toList();
     }
+
     @Override
     public Optional<Project> findById(int projectId) {
-       return repository.findById(projectId);
+        return repository.findById(projectId);
     }
+
     @Transactional
     public void addEmployeeToProject(Project project, Employee employee) {
         employee.getProjects().add(project);
         project.getEmployees().add(employee);
         repository.save(project);
-        employeeService.add(employee);
+        employeeService.save(employee);
     }
+
     @Override
     public Page<Project> getPages() {
         Pageable pageable = PageRequest.of(0, 10, Sort.by("name"));
         return repository.findAll(pageable);
     }
+
     @Override
     @Transactional
     public ResponseEntity<String> addEmployeeToProjectById(int projectId, int employeeId) {
@@ -103,6 +118,12 @@ public class ProjectServiceImpl implements ProjectService,  DtoConverter<Project
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
+
+    @Override
+    public Project add(ProjectDto dto) {
+        return save(toEntity(dto));
+    }
+
     @Override
     public List<ProjectDto> showAllProjectsWithEmployees() {
         return findAll().stream()
