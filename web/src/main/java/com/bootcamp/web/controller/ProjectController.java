@@ -1,11 +1,10 @@
 package com.bootcamp.web.controller;
 
-import com.bootcamp.domain.Employee;
 import com.bootcamp.domain.Project;
 import com.bootcamp.dto.ProjectDto;
 
+import com.bootcamp.service.EmployeeServiceImpl;
 import com.bootcamp.service.ProjectService;
-import com.bootcamp.service.Service;
 import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -20,11 +19,9 @@ import java.util.List;
 @Log4j2
 public class ProjectController {
     private final ProjectService projectProjectService;
-    private final Service<Employee> employeeService;
 
-    public ProjectController(ProjectService projectProjectService, Service<Employee> employeeService) {
+    public ProjectController(ProjectService projectProjectService) {
         this.projectProjectService = projectProjectService;
-        this.employeeService = employeeService;
     }
 
 

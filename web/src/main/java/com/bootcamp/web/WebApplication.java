@@ -11,8 +11,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication(scanBasePackages = "com.bootcamp")
 @EnableJpaRepositories(basePackages = "com.bootcamp")
+@EntityScan(basePackages = "com.bootcamp")
 public class WebApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(WebApplication.class, args);
     }
@@ -20,5 +20,4 @@ public class WebApplication {
     public ModelMapper modelMapper() {
         return new ModelMapper();
     }
-
 }

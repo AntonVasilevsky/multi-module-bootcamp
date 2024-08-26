@@ -39,12 +39,12 @@
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>com.bootcamp</groupId>
             <artifactId>dto</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
-        </dependency>
+        </dependency>-->
     </dependencies>
     <build>
         <plugins>

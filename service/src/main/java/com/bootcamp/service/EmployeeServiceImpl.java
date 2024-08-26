@@ -6,11 +6,10 @@ import com.bootcamp.dto.EmployeeDto;
 import com.bootcamp.dto.SimpleEmployeeDto;
 import com.bootcamp.repository.EmployeeRepository;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,11 +18,12 @@ import java.util.Optional;
 public class EmployeeServiceImpl implements EmployeeService, DtoConverter<Employee, EmployeeDto> {
     private final EmployeeRepository repository;
     private final ModelMapper modelMapper;
-    @Autowired
+
     public EmployeeServiceImpl(EmployeeRepository repository, ModelMapper modelMapper) {
         this.repository = repository;
         this.modelMapper = modelMapper;
     }
+
 
     @Override
     public Optional<Employee> findByName(String name) {
